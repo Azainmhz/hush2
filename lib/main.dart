@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hush1/HomeScreen.dart';
-import 'package:hush1/PlaylistScreen.dart';
-import 'package:hush1/SongScreen.dart';
+import 'package:hush1/Screens/HomeScreen.dart';
+import 'package:hush1/Screens/PlaylistScreen.dart';
+import 'package:hush1/Screens/SongScreen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,8 +20,8 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         textTheme: Theme.of(context). textTheme.apply(
-          bodyColor: hush,
-          displayColor: hush,
+          bodyColor: Colors.black,
+          displayColor: Colors.black,
         ),
 
       ),
