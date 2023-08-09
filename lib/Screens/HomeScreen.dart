@@ -17,7 +17,14 @@ class HomeScreen extends StatelessWidget {
     return Container(
 
         decoration: BoxDecoration(
-        color: hush,
+        gradient:LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors:[
+            Colors.blue.shade200.withOpacity(.8),
+            Colors.blue.shade100.withOpacity(.8),
+          ]
+        ),
 
 
         ),
