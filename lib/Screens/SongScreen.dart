@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:hush1/models/song_model.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:rxdart/rxdart.dart' as rxdart;
+import '../widgets/player_buttons.dart';
 import '../widgets/seekbar.dart';
 
 class SongScreen extends StatefulWidget {
@@ -16,18 +17,26 @@ class SongScreen extends StatefulWidget {
 
   class _SongScreenState extends State<SongScreen>{
     AudioPlayer audioPlayer= AudioPlayer();
-    Song song =Song.songs[0];
+    Song song =Get.arguments ??Song.songs[0];
 
     @override
     void initState(){
       super.initState();
+
       audioPlayer.setAudioSource(
         ConcatenatingAudioSource(children: [
           AudioSource.uri(
             Uri.parse('asset:///${song.url}'),
           ),
-        ]),
+          AudioSource.uri(
+            Uri.parse('asset:///${Song.songs[1].url}'),
+          ),
+          AudioSource.uri(
+            Uri.parse('asset:///${Song.songs[2].url}'),
+          ),
 
+        ],
+        ),
       );
     }
     @override
@@ -45,9 +54,6 @@ class SongScreen extends StatefulWidget {
         );
   @override
   Widget build(BuildContext context){
-
-
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -60,6 +66,10 @@ class SongScreen extends StatefulWidget {
           Image.asset(song.coverUrl,
           fit:BoxFit.cover),
           const _BackgroundFilter(),
+          _MusicPlayer(
+              song:song,
+              seekBarDataStream: _seekBarDataStream,
+              audioPlayer: audioPlayer),
         ],
       ),
     );
@@ -67,6 +77,67 @@ class SongScreen extends StatefulWidget {
 
 
 }
+
+class _MusicPlayer extends StatelessWidget {
+  const _MusicPlayer({
+    super.key,
+    required this.song,
+    required Stream<SeekBarData> seekBarDataStream,
+    required this.audioPlayer,
+  }) : _seekBarDataStream = seekBarDataStream;
+
+  final Song song;
+  final Stream<SeekBarData> _seekBarDataStream;
+  final AudioPlayer audioPlayer;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+          horizontal: 20.0,
+          vertical:50.0),
+
+      child: Column(
+        mainAxisAlignment:MainAxisAlignment.end,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            song.title,
+            style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(height:10),
+          Text(
+            song.description,
+            maxLines: 2,
+            style: Theme.of(context)
+                .textTheme
+                .bodySmall!
+                .copyWith(color: Colors.white),
+          ),
+          const SizedBox(height:30),
+          StreamBuilder<SeekBarData>(
+              stream: _seekBarDataStream,
+              builder:
+              (context, snapshot){
+                final positionData = snapshot.data;
+                    return SeekBar(
+                      position: positionData?.position ?? Duration.zero,
+                      duration:positionData?.duration ?? Duration.zero,
+                      onChangeEnd: audioPlayer.seek,
+                    );
+              },
+          ),
+          PlayerButtons(audioPlayer: audioPlayer),
+        ],
+      ),
+    );
+  }
+}
+
+
 
 class _BackgroundFilter extends StatelessWidget {
   const _BackgroundFilter({

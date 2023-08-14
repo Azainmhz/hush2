@@ -38,26 +38,40 @@ class HomeScreen extends StatelessWidget {
             children: [
               const Music(),
               _MusicScroll(songs: songs),
-              Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Column(
-                  children: [
-                    const SectionHeader(title: 'Playlists'),
-                    ListView.builder(
-                        shrinkWrap:true,
-                        padding: const EdgeInsets.only(top:20),
-                        physics:const NeverScrollableScrollPhysics(),
-                        itemCount: playlists.length,
-                        itemBuilder: ((context,index){
-                          return PlaylistCard(playlist: playlists[index]);
-
-                      })),
-                  ],
-                ),
-              ),
+              _PlaylistMusic(playlists: playlists),
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class _PlaylistMusic extends StatelessWidget {
+  const _PlaylistMusic({
+    super.key,
+    required this.playlists,
+  });
+
+  final List<Playlist> playlists;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(20.0),
+      child: Column(
+        children: [
+          const SectionHeader(title: 'Playlists'),
+          ListView.builder(
+              shrinkWrap:true,
+              padding: const EdgeInsets.only(top:20),
+              physics:const NeverScrollableScrollPhysics(),
+              itemCount: playlists.length,
+              itemBuilder: ((context,index){
+                return PlaylistCard(playlist: playlists[index]);
+
+            })),
+        ],
       ),
     );
   }
@@ -180,7 +194,7 @@ class _CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: Colors.transparent,
-      leading: (Image.asset('Assets/Hush logo.jpg',
+      leading: (Image.asset('Assets/images/Hush logo.jpg',
         height: 50,
         scale: 1,
 

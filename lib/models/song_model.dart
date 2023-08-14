@@ -15,26 +15,26 @@ class Song{
     Song(
       title:'Blue Hydrangea',
       description:'Kindness Starts Here',
-      url:'music/Winter City Lights.mp3',
-      coverUrl:'Assets/Blue.jpeg'
+      url:'Assets/music/Winter_Lights.mp3',
+      coverUrl:'Assets/images/Blue.jpeg'
     ),
     Song(
         title:'Blue Hydrangea',
         description:'Kindness Starts Here',
-        url:'music/Winter City Lights.mp3',
-        coverUrl:'Assets/Blue.jpeg'
+        url:'Assets/music/Winter_Lights.mp3',
+        coverUrl:'Assets/images/Blue.jpeg'
     ),
     Song(
         title:'Blue Hydrangea',
         description:'Kindness Starts Here',
-        url:'music/Winter City Lights.mp3',
-        coverUrl:'Assets/Blue.jpeg'
+        url:'Assets/music/Winter_Lights.mp3',
+        coverUrl:'Assets/images/Blue.jpeg'
     ),
     Song(
         title:'Blue Hydrangea',
         description:'Kindness Starts Here',
-        url:'music/Winter City Lights.mp3',
-        coverUrl:'Assets/Blue.jpeg'
+        url:'Assets/music/Winter_Lights.mp3',
+        coverUrl:'Assets/images/Blue.jpeg'
     ),
   ];
 }
