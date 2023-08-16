@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+import '../models/song_model.dart';
 import '../models/playlist_model.dart';
 
 class PlaylistScreen extends StatelessWidget {
@@ -99,86 +99,29 @@ class _PlayOrShuffleSwitch extends StatefulWidget {
 class _PlayOrShuffleSwitchState extends State<_PlayOrShuffleSwitch> {
   bool isPlay=true;
 
+  get song => null;
+
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     return GestureDetector(
       onTap: (){
-        setState(() {
-          isPlay = !isPlay;
-        });
+        Get.toNamed('/song', arguments:song);
       },
-      child: Container(
-        height:50,
-        width: width,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(15),
-            ),
-        child: Stack(
-          children: [
-            AnimatedPositioned(
-              duration: const Duration(milliseconds: 125),
-              left: isPlay ? 0: width *.45,
-              child: Container(
-                height:50,
-                width: width *.45,
-                decoration: BoxDecoration(
-                  color: Colors.blue,
-                  borderRadius: BorderRadius.circular(15),
-              ),
-              ),
-            ),
-            Row(
-            children:[
-            Expanded(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Center(
-                    child: Text('Play',
-                    style: TextStyle(
-                      color:isPlay?Colors.white:Colors.blue.shade300,
-                      fontSize:17,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(width:10),
-                  Icon(
-                    Icons.play_circle,
-                    color: isPlay?Colors.white: Colors.blue.shade300,
-                  ),
-                ],
-              ),
-            ),
-            Expanded(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Center(
-                    child: Text(
-                      'Shuffle',
-                      style: TextStyle(
-                        color:isPlay ?Colors.blue.shade300 : Colors.white,
-                        fontSize: 17,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(width:10),
-                  Icon(
-                    Icons.shuffle,
-                    color:isPlay ?Colors.blue.shade300 : Colors.white,
-                  ),
-                ],
-              ),
-            ),
 
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+
+            const SizedBox(width:10),
+            Icon(
+              Icons.play_circle,
+              color: isPlay?Colors.white: Colors.blue.shade300,
+            ),
           ],
-          ),
-        ],
         ),
-      ),
-    );
+      );
+
   }
 }
 

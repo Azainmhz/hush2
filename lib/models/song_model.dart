@@ -10,7 +10,7 @@ class Song{
     required this.url,
     required this.coverUrl
   });
-
+  int index= 0;
   static List<Song> songs=[
     Song(
       title:'Blue Hydrangea',
@@ -19,22 +19,93 @@ class Song{
       coverUrl:'Assets/images/Blue.jpeg'
     ),
     Song(
-        title:'Blue Hydrangea',
-        description:'Kindness Starts Here',
-        url:'Assets/music/Winter_Lights.mp3',
-        coverUrl:'Assets/images/Blue.jpeg'
+        title:'Aglow',
+        description:'Gratitudes',
+        url:'Assets/music/Aglow.mp3',
+        coverUrl:'Assets/images/gratitude.jpeg',
     ),
     Song(
-        title:'Blue Hydrangea',
-        description:'Kindness Starts Here',
-        url:'Assets/music/Winter_Lights.mp3',
-        coverUrl:'Assets/images/Blue.jpeg'
+        title:"And You're Mine",
+        description:'Nightlight',
+        url:'Assets/music/And You’re Mine.mp3',
+        coverUrl:'Assets/images/nightlight.jpeg'
     ),
     Song(
-        title:'Blue Hydrangea',
-        description:'Kindness Starts Here',
-        url:'Assets/music/Winter_Lights.mp3',
-        coverUrl:'Assets/images/Blue.jpeg'
+        title:'Gratitude',
+        description:'Gratitudes',
+        url:'Assets/music/Gratitude.mp3',
+        coverUrl:'Assets/images/gratitude.jpeg'
     ),
+    Song(
+        title:'Lobster',
+        description:'Nightlight',
+        url:'Assets/music/Lobster.mp3',
+        coverUrl:'Assets/images/nightlight.jpeg'
+    ),
+    Song(
+        title:'Song For Sammy',
+        description:'Nightlight',
+        url:'Assets/music/Song for Sammy.mp3',
+        coverUrl:'Assets/images/nightlight.jpeg'
+    ),
+    Song(
+        title:'Nightlight',
+        description:'Nightlight',
+        url:'Assets/music/The Cloud Song.mp3',
+        coverUrl:'Assets/images/nightlight.jpeg'
+    ),
+  ];
+
+  static List<Song> Play1=[
+    Song(
+        title:'Gratitudes',
+        description:'Kindness Starts Here',
+        url:'Assets/music/Gratitude.mp3',
+        coverUrl:'Assets/images/gratitude.jpeg'
+    ),
+
+  ];
+  static List<Song> Play2=[
+    Song(
+      title:'Aglow',
+      description:'Gratitudes',
+      url:'Assets/music/Aglow.mp3',
+      coverUrl:'Assets/images/gratitude.jpeg',
+    ),
+    Song(
+        title:'Gratitudes',
+        description:'Kindness Starts Here',
+        url:'Assets/music/Gratitude.mp3',
+        coverUrl:'Assets/images/gratitude.jpeg'
+    ),
+
+  ];
+
+  static List<Song> Play3=[
+    Song(
+        title:'Lobster',
+        description:'Nightlight',
+        url:'Assets/music/Lobster.mp3',
+        coverUrl:'Assets/images/nightlight.jpeg'
+    ),
+    Song(
+        title:'Song For Sammy',
+        description:'Nightlight',
+        url:'Assets/music/Song for Sammy.mp3',
+        coverUrl:'Assets/images/nightlight.jpeg'
+    ),
+    Song(
+        title:'Nightlight',
+        description:'Nightlight',
+        url:'Assets/music/The Cloud Song.mp3',
+        coverUrl:'Assets/images/nightlight.jpeg'
+    ),
+    Song(
+        title:"And You're Mine",
+        description:'Nightlight',
+        url:'Assets/music/And You’re Mine.mp3',
+        coverUrl:'Assets/images/nightlight.jpeg'
+    ),
+
   ];
 }

@@ -1,13 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hush1/Screens/PlaylistScreen.dart';
+import 'package:hush1/Screens/SongScreen.dart';
 import 'package:hush1/models/playlist_model.dart';
-
 import '../models/song_model.dart';
 import '../widgets/widgets.dart';
 String hexColor = "#B0D3E2";
 Color hush = Color(int.parse(hexColor.substring(1, 7), radix: 16) + 0xFF000000);
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
+
+
+
+
+
+
 
   @override
     Widget build(BuildContext context){
@@ -31,17 +38,23 @@ class HomeScreen extends StatelessWidget {
       child: Scaffold(
         backgroundColor: Colors.transparent,
 
-        bottomNavigationBar: _CustomNavBar(),
-        appBar: _CustomAppBar(),
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              const Music(),
-              _MusicScroll(songs: songs),
-              _PlaylistMusic(playlists: playlists),
-            ],
-          ),
-        ),
+
+        appBar: const _CustomAppBar(),
+        body:
+
+        SingleChildScrollView(
+
+           child: Column(
+             children: [
+
+               const Music(),
+               _MusicScroll(songs: songs),
+               _PlaylistMusic(playlists: playlists),
+             ],
+           ),
+
+         ),
+        bottomNavigationBar: const _CustomNavBar(),
       ),
     );
   }
@@ -76,7 +89,66 @@ class _PlaylistMusic extends StatelessWidget {
     );
   }
 }
+class _CustomNavBar extends StatefulWidget {
+  const _CustomNavBar({
+    super.key,
+  });
 
+  @override
+  State<_CustomNavBar> createState() => _CustomNavBarState();
+}
+
+class _CustomNavBarState extends State<_CustomNavBar> {
+
+  List pages =[
+    const HomeScreen(),
+    const SongScreen(),
+    const PlaylistScreen(),
+  ];
+
+  int _currentIndex=0;
+
+  void onTap(int index){
+    setState((){
+      _currentIndex= index;
+      pages[_currentIndex];
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+
+      return BottomNavigationBar(
+
+        onTap:  onTap,
+
+        type: BottomNavigationBarType.fixed,
+        backgroundColor: hush,
+
+        items: const[
+
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label:'Home',
+          ),
+          BottomNavigationBarItem(
+            icon:Icon(Icons.person),
+            label:'Profile',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.library_music_outlined),
+            label:'Playlist',
+          ),
+        ],
+
+        currentIndex: _currentIndex,
+
+
+      );
+
+
+  }
+}
 
 
 class _MusicScroll extends StatelessWidget {
@@ -110,7 +182,6 @@ class _MusicScroll extends StatelessWidget {
 
               },
           ),
-
           ),
         ],
       ),
@@ -158,32 +229,9 @@ class Music extends StatelessWidget {
   }
 }
 
-class _CustomNavBar extends StatelessWidget {
-  const _CustomNavBar({
-    super.key,
-  });
 
-  @override
-  Widget build(BuildContext context) {
-    return BottomNavigationBar(
-      type: BottomNavigationBarType.fixed,
-        backgroundColor: hush,
-        items: const[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label:'home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            label:'home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.library_music_outlined),
-            label:'playlist',
-          ),
-        ]);
-  }
-}
+
+
 
 class _CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   const _CustomAppBar({
@@ -194,29 +242,19 @@ class _CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: Colors.transparent,
-      leading: (Image.asset('Assets/images/Hush logo.jpg',
-        height: 50,
-        scale: 1,
 
-
-      )
-
-      ),
-      actions:[
-        Container(
-          margin: const EdgeInsets.only(right:20),
-          child: const CircleAvatar(
-            backgroundImage: NetworkImage('https://images.unsplash.com/photo-1628563694622-5a76957fd09c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW5zdGFncmFtJTIwcHJvZmlsZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60')
+      title: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Image.asset(
+            'Assets/images/Whitelogo.png',
+            fit: BoxFit.contain,
+            height: 55,
           ),
-        ),
-       
-      ],
-
-
+        ],
+      ),
       centerTitle: true,
-
       elevation: 0.0,
-
     );
   }
 
